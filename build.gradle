@@ -1,0 +1,53 @@
+apply plugin: 'base'
+apply plugin: 'war'
+apply plugin: 'jetty'
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'idea'
+
+ext.springVersion='4.0.7.RELEASE'
+ext.hibernateVersion='4.3.0.Final'
+ext.hibernateValidatorVersion='4.3.0.Final'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+ 
+ 	// Java Servlet API
+    providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
+	
+	// Log 4j
+	compile 'log4j:log4j:1.2.17'
+	
+	// Spring Framework
+	compile "org.springframework:spring-test:$springVersion"
+    compile ('org.springframework.data:spring-data-jpa:1.7.0.RELEASE') {
+		exclude group:"org.springframework", module:"spring-asm"
+	}
+    compile "org.springframework:spring-jdbc:$springVersion"
+    compile "org.springframework:spring-tx:$springVersion"
+    compile "org.springframework:spring-orm:$springVersion"
+    compile "org.springframework:spring-aop:$springVersion"
+    compile "org.springframework:spring-webmvc:$springVersion"
+    compile "org.springframework:spring-oxm:$springVersion"
+	
+    // Annotation support
+    compile 'cglib:cglib-nodep:2.2.2'
+    compile 'org.aspectj:aspectjrt:1.6.12'
+    compile 'org.aspectj:aspectjweaver:1.6.12'        
+
+    // Hibernate
+    compile "org.hibernate:hibernate-entitymanager:$hibernateVersion"
+    compile "org.hibernate:hibernate-core:$hibernateVersion"    
+    compile "org.hibernate:hibernate-validator:$hibernateValidatorVersion"
+    compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final"
+ 
+    // MySQL
+    compile 'mysql:mysql-connector-java:5.0.8'
+	
+	// Jackson (for JSON mapping of objects)
+	compile "com.fasterxml.jackson.core:jackson-databind:2.2.0"
+	
+}
